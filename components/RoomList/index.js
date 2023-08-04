@@ -7,6 +7,7 @@ import {
   ButtonContainer,
   RoomName,
   RoomSubject,
+  RoomUList,
 } from "./styles";
 import Divider from "../Divider";
 import RoomIcon from "../RoomIcon";
@@ -57,7 +58,7 @@ export default function RoomList({ userType }) {
 
   return (
     <RoomListContainer>
-      <ul>
+      <RoomUList>
         {rooms.map((room, index) => (
           <BasicListItem key={room._id}>
             <RoomListItem key={room._id}>
@@ -82,7 +83,7 @@ export default function RoomList({ userType }) {
             {index !== rooms.length - 1 && <Divider />}
           </BasicListItem>
         ))}
-      </ul>
+      </RoomUList>
     </RoomListContainer>
   );
 }

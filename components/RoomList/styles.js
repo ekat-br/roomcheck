@@ -46,6 +46,11 @@ const RoomSubject = styled.span`
   width: 150px;
 `;
 
+const RoomUList = styled.ul`
+  margin: 0 20px 0 20px;
+  padding: 0;
+`;
+
 export {
   RoomListContainer,
   RoomListTitle,
@@ -54,4 +59,5 @@ export {
   ButtonContainer,
   RoomName,
   RoomSubject,
+  RoomUList,
 };
