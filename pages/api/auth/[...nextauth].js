@@ -15,10 +15,9 @@ providers.push(
     },
     async authorize(credentials) {
       if (process.env.VERCEL_ENV === "preview") {
-        // Dummy-Anmeldeinformationen nur für den Preview-Modus
         if (
-          credentials.username === process.env.ADMIN_USERNAME &&
-          credentials.password === process.env.ADMIN_PASSWORD
+          credentials.username === process.env.ADMIN_USERNAME_PV &&
+          credentials.password === process.env.ADMIN_PASSWORD_PV
         ) {
           return {
             id: "1",
@@ -28,7 +27,6 @@ providers.push(
           };
         }
       } else {
-        // Standard-Authentifizierungslogik für andere Umgebungen
         if (
           credentials.username === process.env.ADMIN_USERNAME &&
           credentials.password === process.env.ADMIN_PASSWORD
@@ -58,6 +56,13 @@ providers.push(
   })
 );
 
+// Add GithubProvider for GitHub authentication
+providers.push(
+  GithubProvider({
+    clientId: process.env.GITHUB_ID,
+    clientSecret: process.env.GITHUB_SECRET,
+  })
+);
 function getRoleOfUser(email) {
   if (email === process.env.ADMIN_EMAIL) {
     return "admin";
