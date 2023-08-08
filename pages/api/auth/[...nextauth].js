@@ -14,41 +14,49 @@ providers.push(
       password: { label: "Password", type: "password" },
     },
     async authorize(credentials) {
-      if (
-        credentials.username === process.env.ADMIN_USERNAME &&
-        credentials.password === process.env.ADMIN_PASSWORD
-      ) {
-        return {
-          id: "1",
-          name: "Admin",
-          email: "admin@example.com",
-          role: "admin",
-        };
-      } else if (
-        credentials.username === process.env.TEACHER_USERNAME &&
-        credentials.password === process.env.TEACHER_PASSWORD
-      ) {
-        return {
-          id: "2",
-          name: "Teacher",
-          email: "teacher@example.com",
-          role: "teacher",
-        };
+      if (process.env.VERCEL_ENV === "preview") {
+        // Dummy-Anmeldeinformationen nur für den Preview-Modus
+        if (
+          credentials.username === "admin" &&
+          credentials.password === "adminpassword"
+        ) {
+          return {
+            id: "1",
+            name: "Admin",
+            email: "admin@example.com",
+            role: "admin",
+          };
+        }
       } else {
-        return null;
+        // Standard-Authentifizierungslogik für andere Umgebungen
+        if (
+          credentials.username === process.env.ADMIN_USERNAME &&
+          credentials.password === process.env.ADMIN_PASSWORD
+        ) {
+          return {
+            id: "1",
+            name: "Admin",
+            email: "admin@example.com",
+            role: "admin",
+          };
+        } else if (
+          credentials.username === process.env.TEACHER_USERNAME &&
+          credentials.password === process.env.TEACHER_PASSWORD
+        ) {
+          return {
+            id: "2",
+            name: "Teacher",
+            email: "teacher@example.com",
+            role: "teacher",
+          };
+        }
       }
+
+      // Fallback für andere Anmeldeinformationen
+      return null;
     },
   })
 );
-
-if (process.env.VERCEL_ENV !== "preview") {
-  providers.push(
-    GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
-    })
-  );
-}
 
 function getRoleOfUser(email) {
   if (email === process.env.ADMIN_EMAIL) {
