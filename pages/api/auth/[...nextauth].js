@@ -16,8 +16,8 @@ providers.push(
     async authorize(credentials) {
       if (process.env.VERCEL_ENV === "preview") {
         if (
-          credentials.username === process.env.ADMIN_USERNAME_PV &&
-          credentials.password === process.env.ADMIN_PASSWORD_PV
+          credentials.username === "admin" &&
+          credentials.password === "adminpw"
         ) {
           return {
             id: "1",
