@@ -17,8 +17,8 @@ providers.push(
       if (process.env.VERCEL_ENV === "preview") {
         // Dummy-Anmeldeinformationen nur für den Preview-Modus
         if (
-          credentials.username === "admin" &&
-          credentials.password === "adminpassword"
+          credentials.username === process.env.ADMIN_USERNAME &&
+          credentials.password === process.env.ADMIN_PASSWORD
         ) {
           return {
             id: "1",
