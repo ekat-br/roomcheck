@@ -6,14 +6,12 @@ import styled from "styled-components";
 import Navigation from "../../components/Navigation";
 
 export default function AdminView() {
-  const { data: session } = useSession();
-  const router = useRouter();
+  const isAdmin = true;
 
-  if (session && session.user.role === "admin") {
+  if (isAdmin) {
     return (
       <>
         <RoomList userType="admin" />
-        <Navigation userType="admin" />
       </>
     );
   } else {

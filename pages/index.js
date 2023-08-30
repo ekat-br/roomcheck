@@ -5,7 +5,6 @@ export default function Home() {
   return (
     <main>
       <RoomList />
-      <Navigation />
     </main>
   );
 }

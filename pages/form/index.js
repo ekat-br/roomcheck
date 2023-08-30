@@ -29,7 +29,6 @@ export default function Form() {
   return (
     <>
       <RoomCreateForm handleSubmit={handleSubmit} />
-      <Navigation />
     </>
   );
 }

@@ -31,8 +31,7 @@ export default function EditRoomPage() {
 
   return (
     <>
-      <RoomEditDeleteForm room={roomData} />
-      <Navigation />
+      <RoomEditDeleteForm room={roomData} />{" "}
     </>
   );
 }
